@@ -1,6 +1,6 @@
 # NQ-RARBG/ API.js
 
-![Not Quite RARBG](NQ-RARBG.png)
+![Not Quite RARBG](logo_2.png)
 
 This is the API for the Not Quite RARBG website!
 
