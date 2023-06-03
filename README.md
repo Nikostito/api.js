@@ -1,4 +1,6 @@
-# api.js
+# NQ-RARBG/ API.js
+![Not Quite RARBG](logo_2.png)
+
 RARBG API rewritten with node.js
 
 To start contributing:<br>
