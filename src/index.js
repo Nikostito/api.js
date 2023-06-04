@@ -1,26 +1,25 @@
-require('dotenv').config();
-const axios = require('axios');
 const express = require('express');
-const app = express();
+const bodyParser = require('body-parser');
+const cors = require('cors');
+const mongoose = require('mongoose');
+const dotenv = require('dotenv');
+const routes = require("./routes")
 
-// Get the API key and DB URL from environment variables
-const apiKey = process.env.API_KEY;
-const dbUrl = process.env.DB_URL;
+dotenv.config();
 
-app.get('/', async (req, res) => {
-    if (!apiKey || !dbUrl) {
-        return res.status(400).json({ error: 'API key invalid.' });
-    }
+mongoose
+    .connect(process.env.MONGO_URL, { useNewUrlParser: true, useUnifiedTopology: true })
+    .then(() => {
+        console.log("MongoDB connected")
+        const app = express();
+        app.use(cors());
+        app.use(bodyParser.json());
+        app.use("/api", routes)
+        app.listen(process.env.PORT || 5000, () => {
+            console.log(`Server is running on port ${process.env.PORT || 5000}`);
+        });
 
-    try {
-        const response = await axios.get(`${dbUrl}?key=${apiKey}`);
-        res.json(response.data);
-    } catch (error) {
-        res.status(500).json({ error: error.message });
-    }
-});
+    })
+    .catch((err) => console.log(err));
 
-const port = process.env.PORT || 3000;
-app.listen(port, () => {
-    console.log(`Server is running on port ${port}.`);
-});
+

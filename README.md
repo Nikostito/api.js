@@ -1,5 +1,5 @@
 # NQ-RARBG/ API.js
-![Not Quite RARBG](logo_2.png)
+![Not Quite RARBG](img/logo_2.png)
 
 RARBG API rewritten with node.js
 
