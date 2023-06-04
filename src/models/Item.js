@@ -30,7 +30,12 @@ const ItemSchema = new Schema({
         unique: true
     }
 });
+
+// Required for pagination
 ItemSchema.plugin(paginationPlugin);
 ItemSchema.index({ date: -1, _id: -1 })
+
+// Required for full-text search
+ItemSchema.index({ title : 'text', cat : 'text' })
 
 module.exports = mongoose.model('Item', ItemSchema);
